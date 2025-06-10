@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Результаты поиска</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Результаты поиска</h1>
+  <div id="search-results"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q").toLowerCase();
+    const books = [
+      { title: "Война и мир", link: "book1.html" },
+      { title: "1984", link: "book2.html" },
+      { title: "Мастер и Маргарита", link: "book3.html" },
+      { title: "Преступление и наказание", link: "book4.html" },
+      { title: "Улисс", link: "book5.html" },
+      { title: "Братья Карамазовы", link: "book6.html" },
+      { title: "Великий Гэтсби", link: "book7.html" },
+      { title: "Гордость и предубеждение", link: "book8.html" },
+      { title: "Один день Ивана Денисовича", link: "book9.html" },
+      { title: "Анна Каренина", link: "book10.html" },
+      { title: "Дон Кихот", link: "book11.html" },
+      { title: "Сто лет одиночества", link: "book12.html" },
+      { title: "Портрет Дориана Грея", link: "book13.html" },
+      { title: "Лолита", link: "book14.html" },
+      { title: "Алхимик", link: "book15.html" },
+      { title: "Три товарища", link: "book16.html" },
+      { title: "Чума", link: "book17.html" },
+      { title: "Маленький принц", link: "book18.html" },
+      { title: "Шантарам", link: "book19.html" },
+      { title: "Моби Дик", link: "book20.html" }
+    ];
+
+    const resultsContainer = document.getElementById("search-results");
+    const results = books.filter(book => book.title.toLowerCase().includes(query));
+
+    if (results.length > 0) {
+      results.forEach(book => {
+        const link = document.createElement("a");
+        link.href = book.link;
+        link.textContent = book.title;
+        link.style.display = "block";
+        resultsContainer.appendChild(link);
+      });
+    } else {
+      resultsContainer.textContent = "Ничего не найдено.";
+    }
+  </script>
+</body>
+</html>
